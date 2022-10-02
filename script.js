@@ -39,6 +39,39 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function game(rounds) {
+    // Initialize score keeping variables
+    let playerScore = 0;
+    let computerScore = 0;
+    // Initialize loop variables
+    let playerSelection;
+    let winner;
+
+    // Loop through # of rounds
+    for (let i = 0; i < rounds; i++) {
+        // Prompt user for selection
+        playerSelection = prompt('Rock, Paper, or Scissors???');
+        // Play round
+        winner = playRound(playerSelection, getComputerChoice());
+        // Scorekeeping
+        if (winner === 'player') {
+            playerScore++;
+        } else if (winner === 'computer') {
+            computerScore++;
+        }
+        // Score reporting
+        console.log(`Player: ${playerScore} Computer: ${computerScore}`)
+    }
+
+    // Game over deciding winner
+    if (playerScore > computerScore) {
+        console.log('Game Over: You win!')
+    } else if (playerScore < computerScore) {
+        console.log('Game Over: You lost.')
+    } else {
+        console.log('Game Over: It\'s a tie')
+    }
+}
 
 
 // Tests computerChoice for equal distribution
