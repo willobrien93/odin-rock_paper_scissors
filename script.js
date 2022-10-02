@@ -21,6 +21,8 @@ function playRound(playerSelection, computerSelection) {
     const computerIndex = choicesLower.indexOf(computerSelection.toLowerCase());
     const difference = playerIndex - computerIndex;
 
+    console.log(`Testing: Player:${playerSelection} CPU: ${computerSelection}`);
+
     // Check if tie
     if (playerIndex === computerIndex) {
         console.log(`It's a tie, both threw ${choices[playerIndex]}.`);
@@ -28,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
     }
     // Check if player wins
     // Conditions based on patterns of winning combinations
-    else if (difference === -1 || difference === 2) {
+    else if (difference === 1 || difference === -2) {
         console.log(`You win! ${choices[playerIndex]} beats ${choices[computerIndex]}.`);
         return 'player';
     }
