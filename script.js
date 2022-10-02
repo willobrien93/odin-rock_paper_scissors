@@ -39,7 +39,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(rounds) {
+function game(roundsToWin) {
     // Initialize score keeping variables
     let playerScore = 0;
     let computerScore = 0;
@@ -47,8 +47,8 @@ function game(rounds) {
     let playerSelection;
     let winner;
 
-    // Loop through # of rounds
-    for (let i = 0; i < rounds; i++) {
+    // Loop until someone wins
+    while (Math.max(playerScore,computerScore) < roundsToWin) {
         // Prompt user for selection
         playerSelection = prompt('Rock, Paper, or Scissors???');
         // Play round
