@@ -9,6 +9,38 @@ function getComputerChoice() {
         'error';
 }
 
+
+// Checks selections and decides winner
+// Returns winner of round (tie/player/computer)
+function playRound(playerSelection, computerSelection) {
+    // Input Validation
+    const choices = ['Rock', 'Paper', 'Scissors'];
+    const choicesLower = ['rock', 'paper', 'scissors'];
+    
+    const playerIndex = choicesLower.indexOf(playerSelection.toLowerCase());
+    const computerIndex = choicesLower.indexOf(computerSelection.toLowerCase());
+    const difference = playerIndex - computerIndex;
+
+    // Check if tie
+    if (playerIndex === computerIndex) {
+        console.log(`It's a tie, both threw ${choices[playerIndex]}.`);
+        return 'tie';
+    }
+    // Check if player wins
+    // Conditions based on patterns of winning combinations
+    else if (difference === -1 || difference === 2) {
+        console.log(`You win! ${choices[playerIndex]} beats ${choices[computerIndex]}.`);
+        return 'player';
+    }
+    // Player lost
+    else {
+        console.log(`You lost! ${choices[computerIndex]} beats ${choices[playerIndex]}.`);
+        return 'computer';
+    }
+}
+
+
+
 // Tests computerChoice for equal distribution
 function testComputerChoice(sampleSize){
     let rock = 0;
@@ -37,11 +69,6 @@ function testComputerChoice(sampleSize){
     console.log(`Scissors: ${scissors}`)
 }
 
-
-// playRound function
-// Parameters: 
-// Player Selection (case-insensitive), Computer Selection
-// Return: String of who is the winner and why
 
 // game function
 // plays 5 rounds, keeps score, reports winner and loser
