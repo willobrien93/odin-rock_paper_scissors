@@ -9,7 +9,6 @@ function getComputerChoice() {
         'error';
 }
 
-
 // Checks selections and decides winner
 // Returns winner of round (tie/player/computer)
 function playRound(playerSelection, computerSelection) {
@@ -39,69 +38,43 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(roundsToWin) {
-    // Initialize score keeping variables
-    let playerScore = 0;
-    let computerScore = 0;
-    // Initialize loop variables
-    let playerSelection;
-    let winner;
-
-    // Loop until someone wins
-    while (Math.max(playerScore,computerScore) < roundsToWin) {
-        // Prompt user for selection
-        playerSelection = prompt('Rock, Paper, or Scissors???');
-        // Play round
-        winner = playRound(playerSelection, getComputerChoice());
-        // Scorekeeping
-        if (winner === 'player') {
-            playerScore++;
-        } else if (winner === 'computer') {
-            computerScore++;
-        }
-        // Score reporting
-        console.log(`Player: ${playerScore} Computer: ${computerScore}`)
+function updateScore(winner) {
+    if (winner === 'player') {
+        playerScore++;
+    } else if (winner === 'computer') {
+        computerScore++;
     }
+}
 
+function checkForWinner() {
     // Game over deciding winner
-    if (playerScore > computerScore) {
+    if (playerScore === roundsToWin) {
         console.log('Game Over: You win!')
-    } else if (playerScore < computerScore) {
+        playerScore = 0;
+        computerScore= 0;
+    } else if (computerScore === roundsToWin) {
         console.log('Game Over: You lost.')
-    } else {
-        console.log('Game Over: It\'s a tie')
+        playerScore = 0;
+        computerScore = 0;
     }
 }
 
+// Initialize score keeping variables
+let playerScore = 0;
+let computerScore = 0;
+let roundsToWin = 5;
+// Initialize loop variables
+let playerSelection;
+let winner;
 
-// Tests computerChoice for equal distribution
-function testComputerChoice(sampleSize){
-    let rock = 0;
-    let paper = 0;
-    let scissors = 0;
-    let selection;
-
-    for(let i = 0; i < sampleSize; i++) {
-        selection = getComputerChoice();
-        if (selection === 'Rock') {
-            rock++;
-        }
-        else if (selection === 'Paper') {
-            paper++;
-        }
-        else if (selection === 'Scissors') {
-            scissors++
-        }
-        else{
-            return 'Error'
-        }
-    }
-
-    console.log(`Rock: ${rock}`)
-    console.log(`Paper: ${paper}`)
-    console.log(`Scissors: ${scissors}`)
-}
+gameButtons = document.querySelectorAll('button');
+gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
+    winner = playRound(gameButton.name , getComputerChoice())
+    updateScore(winner);
+    // Score reporting
+    console.log(`Player: ${playerScore} Computer: ${computerScore}`)
+    //
+    checkForWinner();
 
 
-// game function
-// plays 5 rounds, keeps score, reports winner and loser
+}));
