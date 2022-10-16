@@ -22,18 +22,18 @@ function playRound(playerSelection, computerSelection) {
 
     // Check if tie
     if (playerIndex === computerIndex) {
-        console.log(`It's a tie, both threw ${choices[playerIndex]}.`);
+        gameMessage.textContent =`It's a tie, both threw ${choices[playerIndex]}.`;
         return 'tie';
     }
     // Check if player wins
     // Conditions based on patterns of winning combinations
     else if (difference === 1 || difference === -2) {
-        console.log(`You win! ${choices[playerIndex]} beats ${choices[computerIndex]}.`);
+        gameMessage.textContent = `You win! ${choices[playerIndex]} beats ${choices[computerIndex]}.`;
         return 'player';
     }
     // Player lost
     else {
-        console.log(`You lost! ${choices[computerIndex]} beats ${choices[playerIndex]}.`);
+        gameMessage.textContent =`You lost! ${choices[computerIndex]} beats ${choices[playerIndex]}.`;
         return 'computer';
     }
 }
@@ -41,9 +41,12 @@ function playRound(playerSelection, computerSelection) {
 function updateScore(winner) {
     if (winner === 'player') {
         playerScore++;
+        playerScoreDisplay.textContent  = playerScore;
     } else if (winner === 'computer') {
         computerScore++;
+        computerScoreDisplay.textContent = computerScore;
     }
+
 }
 
 function checkForWinner() {
@@ -64,10 +67,14 @@ let playerScore = 0;
 let computerScore = 0;
 let roundsToWin = 5;
 // Initialize loop variables
-let playerSelection;
 let winner;
-
+// Select required elements
 gameButtons = document.querySelectorAll('button');
+playerScoreDisplay = document.querySelector('#playerScore');
+computerScoreDisplay = document.querySelector('#computerScore');
+gameMessage = document.querySelector('.message')
+
+// 
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
     winner = playRound(gameButton.name , getComputerChoice())
     updateScore(winner);
@@ -75,6 +82,4 @@ gameButtons.forEach(gameButton => gameButton.addEventListener('click', function(
     console.log(`Player: ${playerScore} Computer: ${computerScore}`)
     //
     checkForWinner();
-
-
 }));
