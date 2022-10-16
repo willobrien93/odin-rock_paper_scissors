@@ -36,6 +36,13 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function updateVisual(playerSelection, computerSelection) {
+    playerVisual.src = `img/${playerSelection.toLowerCase()}.png`;
+    playerVisual.alt = `${playerSelection}`;
+    computerVisual.src = `img/${computerSelection.toLowerCase()}.png`;
+    computerVisual.alt = `${computerSelection}`;
+}
+
 function updateScore(winner) {
     if (winner === 'player') {
         playerScore++;
@@ -68,9 +75,13 @@ let playerScore = 0;
 let computerScore = 0;
 let roundsToWin = 5;
 // Initialize loop variables
+let playerSelection;
+let computerSelection;
 let winner;
 // Select required elements
 gameButtons = document.querySelectorAll('button');
+playerVisual = document.querySelector('.playerVisual');
+computerVisual = document.querySelector('.computerVisual');
 results = document.querySelector('.results');
 playerScoreDisplay = document.querySelector('#playerScore');
 computerScoreDisplay = document.querySelector('#computerScore');
@@ -84,7 +95,10 @@ gameButtons.forEach(gameButton => gameButton.addEventListener('click', function(
         gameInstruction.style.display = 'none';
         results.style.display = 'block';
     }
-    winner = playRound(gameButton.name , getComputerChoice())
+    playerSelection = gameButton.name;
+    computerSelection = getComputerChoice();
+    winner = playRound(playerSelection, computerSelection);
+    updateVisual(playerSelection, computerSelection);
     updateScore(winner);
     // Score reporting
     console.log(`Player: ${playerScore} Computer: ${computerScore}`)
