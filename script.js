@@ -41,22 +41,25 @@ function playRound(playerSelection, computerSelection) {
 function updateScore(winner) {
     if (winner === 'player') {
         playerScore++;
-        playerScoreDisplay.textContent  = playerScore;
     } else if (winner === 'computer') {
         computerScore++;
-        computerScoreDisplay.textContent = computerScore;
     }
-
+    playerScoreDisplay.textContent  = playerScore;
+    computerScoreDisplay.textContent = computerScore;
 }
 
 function checkForWinner() {
     // Game over deciding winner
     if (playerScore === roundsToWin) {
-        console.log('Game Over: You win!')
+        gameInstruction.textContent = 'Game Over: You win! Play Again?';
+        gameInstruction.style.display = 'block';
+        results.style.display = 'none';
         playerScore = 0;
         computerScore= 0;
     } else if (computerScore === roundsToWin) {
-        console.log('Game Over: You lost.')
+        gameInstruction.textContent = 'Game Over: You lost. Play Again?';
+        gameInstruction.style.display = 'block';
+        results.style.display = 'none';
         playerScore = 0;
         computerScore = 0;
     }
@@ -70,12 +73,19 @@ let roundsToWin = 5;
 let winner;
 // Select required elements
 gameButtons = document.querySelectorAll('button');
+results = document.querySelector('.results');
 playerScoreDisplay = document.querySelector('#playerScore');
 computerScoreDisplay = document.querySelector('#computerScore');
-gameMessage = document.querySelector('.message')
+gameInstruction = document.querySelector('.instruction');
+gameMessage = document.querySelector('.message');
 
-// 
+
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
+    // Check for game start
+    if (playerScore === 0 && computerScore === 0) {
+        gameInstruction.style.display = 'none';
+        results.style.display = 'block';
+    }
     winner = playRound(gameButton.name , getComputerChoice())
     updateScore(winner);
     // Score reporting
