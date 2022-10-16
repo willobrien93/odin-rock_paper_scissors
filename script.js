@@ -14,26 +14,24 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     // Input Validation
     const choices = ['Rock', 'Paper', 'Scissors'];
-    const choicesLower = ['rock', 'paper', 'scissors'];
-    
-    const playerIndex = choicesLower.indexOf(playerSelection.toLowerCase());
-    const computerIndex = choicesLower.indexOf(computerSelection.toLowerCase());
+    const playerIndex = choices.indexOf(playerSelection);
+    const computerIndex = choices.indexOf(computerSelection);
     const difference = playerIndex - computerIndex;
 
     // Check if tie
     if (playerIndex === computerIndex) {
-        gameMessage.textContent =`It's a tie, both threw ${choices[playerIndex]}.`;
+        gameMessage.textContent =`It's a tie, both threw ${playerSelection}.`;
         return 'tie';
     }
     // Check if player wins
     // Conditions based on patterns of winning combinations
     else if (difference === 1 || difference === -2) {
-        gameMessage.textContent = `You win! ${choices[playerIndex]} beats ${choices[computerIndex]}.`;
+        gameMessage.textContent = `You win! ${playerSelection} beats ${computerSelection}.`;
         return 'player';
     }
     // Player lost
     else {
-        gameMessage.textContent =`You lost! ${choices[computerIndex]} beats ${choices[playerIndex]}.`;
+        gameMessage.textContent =`You lost! ${computerSelection} beats ${playerSelection}.`;
         return 'computer';
     }
 }
