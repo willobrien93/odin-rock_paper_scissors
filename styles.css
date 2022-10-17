@@ -1,12 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+
+body {
+    font-family: 'SilkScreen', sans-serif;
+}
+
 .container {
-    display: flexbox;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: transparent;
+    border: 5px dotted;
+    min-width: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: inherit;
+    font-size: 24px;
+}
+
+.instruction {
+    display: flex;
+    justify-content: center;
+}
+
+.visuals {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.player, .cpu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    max-width: 250px;
+    max-height: 250px;
+    margin-bottom: 10px;
 }
 
 .results {
     display: none;
 }
 
-.title {
-    font-size: 72px;
-}

@@ -57,13 +57,13 @@ function checkForWinner() {
     // Game over deciding winner
     if (playerScore === roundsToWin) {
         gameInstruction.textContent = 'Game Over: You win! Play Again?';
-        gameInstruction.style.display = 'block';
+        gameInstruction.style.display = 'flex';
         results.style.display = 'none';
         playerScore = 0;
         computerScore= 0;
     } else if (computerScore === roundsToWin) {
         gameInstruction.textContent = 'Game Over: You lost. Play Again?';
-        gameInstruction.style.display = 'block';
+        gameInstruction.style.display = 'flex';
         results.style.display = 'none';
         playerScore = 0;
         computerScore = 0;
@@ -80,6 +80,7 @@ let computerSelection;
 let winner;
 // Select required elements
 gameButtons = document.querySelectorAll('button');
+visuals = document.querySelector('.visuals');
 playerVisual = document.querySelector('.playerVisual');
 computerVisual = document.querySelector('.computerVisual');
 results = document.querySelector('.results');
@@ -94,14 +95,12 @@ gameButtons.forEach(gameButton => gameButton.addEventListener('click', function(
     if (playerScore === 0 && computerScore === 0) {
         gameInstruction.style.display = 'none';
         results.style.display = 'block';
+        visuals.style.visibility = 'visible';
     }
     playerSelection = gameButton.name;
     computerSelection = getComputerChoice();
     winner = playRound(playerSelection, computerSelection);
     updateVisual(playerSelection, computerSelection);
     updateScore(winner);
-    // Score reporting
-    console.log(`Player: ${playerScore} Computer: ${computerScore}`)
-    //
     checkForWinner();
 }));
