@@ -106,7 +106,7 @@ gameButtons.forEach(gameButton => gameButton.addEventListener('click', function(
     // Check for game start
     if (playerScore === 0 && computerScore === 0) {
         gameInstruction.style.display = 'none';
-        results.style.display = 'block';
+        results.style.display = 'flex';
         visuals.style.visibility = 'visible';
     }
     playerSelection = gameButton.name;
