@@ -70,6 +70,14 @@ function checkForWinner() {
     }
 }
 
+function buttonAddHighlight(e) {
+    e.target.classList.add('highlight');
+}
+
+function buttonRemoveHighlight(e) {
+    e.target.classList.remove('highlight');
+}
+
 // Initialize score keeping variables
 let playerScore = 0;
 let computerScore = 0;
@@ -88,6 +96,10 @@ playerScoreDisplay = document.querySelector('#playerScore');
 computerScoreDisplay = document.querySelector('#computerScore');
 gameInstruction = document.querySelector('.instruction');
 gameMessage = document.querySelector('.message');
+
+// Button Hover Highlighting
+gameButtons.forEach(gameButton => gameButton.addEventListener('mouseover', buttonAddHighlight ));
+gameButtons.forEach(gameButton => gameButton.addEventListener('mouseout', buttonRemoveHighlight ));
 
 
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
