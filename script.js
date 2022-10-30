@@ -46,8 +46,10 @@ function updateVisual(playerSelection, computerSelection) {
 function updateScore(winner) {
     if (winner === 'player') {
         playerScore++;
+        playerScoreDisplay.classList.add('winner');
     } else if (winner === 'computer') {
         computerScore++;
+        computerScoreDisplay.classList.add('winner');
     }
     playerScoreDisplay.textContent  = playerScore;
     computerScoreDisplay.textContent = computerScore;
@@ -78,6 +80,11 @@ function buttonRemoveHighlight(e) {
     e.target.classList.remove('highlight');
 }
 
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // skip it if its not transitioning
+    this.classList.remove('winner');
+}
+
 // Initialize score keeping variables
 let playerScore = 0;
 let computerScore = 0;
@@ -100,6 +107,10 @@ gameMessage = document.querySelector('.message');
 // Button Hover Highlighting
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseover', buttonAddHighlight ));
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseout', buttonRemoveHighlight ));
+
+// Winner Trasition
+playerScoreDisplay.addEventListener('transitionend',removeTransition);
+computerScoreDisplay.addEventListener('transitionend',removeTransition);
 
 
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {

@@ -95,4 +95,12 @@ img {
     font-size: 48px;
 }
 
+#playerScore, #computerScore {
+    transition: all 0.2s ease;
+}
+
+.winner {
+    transform: scale(1.25);
+    background-color:lightgray;
+}
 
