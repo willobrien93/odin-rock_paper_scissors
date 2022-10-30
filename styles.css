@@ -2,12 +2,18 @@
 
 body {
     font-family: 'SilkScreen', sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 95vh;
+    min-width: 100vw;
+    display: flex;
 }
 
 .game {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
 }
 
 .container1, .container2, .container3 {

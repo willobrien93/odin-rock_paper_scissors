@@ -59,17 +59,20 @@ function checkForWinner() {
     // Game over deciding winner
     if (playerScore === roundsToWin) {
         gameInstruction.textContent = 'Game Over: You win! Play Again?';
-        gameInstruction.style.display = 'flex';
-        results.style.display = 'none';
-        playerScore = 0;
-        computerScore= 0;
+        resetScore();
     } else if (computerScore === roundsToWin) {
         gameInstruction.textContent = 'Game Over: You lost. Play Again?';
-        gameInstruction.style.display = 'flex';
-        results.style.display = 'none';
-        playerScore = 0;
-        computerScore = 0;
+        resetScore();
     }
+}
+
+function resetScore() {
+    gameInstruction.style.display = 'flex';
+    results.style.display = 'none';
+    playerScore = 0;
+    playerScoreDisplay.classList.remove('winner');
+    computerScore= 0;
+    computerScoreDisplay.classList.remove('winner');
 }
 
 function buttonAddHighlight(e) {
