@@ -30,7 +30,7 @@ body {
 }
 
 .buttons {
-    display: flex;
+    display: none;
     justify-content: center;
 }
 

@@ -102,19 +102,28 @@ let computerSelection;
 let winner;
 
 // Select required elements
-gameButtons = document.querySelectorAll('button');
+//Container1
+gameInstruction = document.querySelector('.instruction');
+startButton = document.querySelector('.startButton');
+gameButtons = document.querySelectorAll('.gameButtons');
+//Container2
 visuals = document.querySelector('.visuals');
 playerVisual = document.querySelector('.playerVisual');
 computerVisual = document.querySelector('.computerVisual');
+gameMessage = document.querySelector('.message');
+//Container3
 results = document.querySelector('.results');
 playerScoreDisplay = document.querySelector('#playerScore');
 computerScoreDisplay = document.querySelector('#computerScore');
-gameInstruction = document.querySelector('.instruction');
-gameMessage = document.querySelector('.message');
+
+console.log(startButton);
 
 // Button Hover Highlighting
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseover', buttonAddHighlight ));
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseout', buttonRemoveHighlight ));
+startButton.addEventListener('mouseover', buttonAddHighlight );
+startButton.addEventListener('mouseout', buttonRemoveHighlight );
+
 
 // Winner Transition
 playerScoreDisplay.addEventListener('transitionend',removeTransition);
