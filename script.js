@@ -61,21 +61,30 @@ function updateScore(winner) {
 function checkForWinner() {
     // Game over deciding winner
     if (playerScore === roundsToWin) {
-        gameInstruction.textContent = 'Game Over: You win! Play Again?';
-        resetScore();
+        gameInstructionText.textContent = 'Game Over: You win!';
+        gameOver();
     } else if (computerScore === roundsToWin) {
-        gameInstruction.textContent = 'Game Over: You lost. Play Again?';
-        resetScore();
+        gameInstructionText.textContent = 'Game Over: You lost!';
+        gameOver();
     }
 }
 
-function resetScore() {
+function gameOver() {
+    startButton.textContent = 'Play Again?';
     gameInstruction.style.display = 'flex';
-    results.style.display = 'none';
+    gameSelection.style.display = 'none';
+}
+
+function resetGame() {
     playerScore = 0;
-    playerScoreDisplay.classList.remove('winner');
     computerScore= 0;
-    computerScoreDisplay.classList.remove('winner');
+    playerScoreDisplay.textContent  = playerScore;
+    computerScoreDisplay.textContent = computerScore;
+    playerVisual.src = `img/placeholder.png`;
+    playerVisual.alt = ``;
+    computerVisual.src = `img/placeholder.png`;
+    computerVisual.alt = ``;
+    gameMessage.textContent = "Make a Selection to Start."
 }
 
 // Button Hover Styling
@@ -104,6 +113,7 @@ let winner;
 // Select required elements
 //Container1
 gameInstruction = document.querySelector('.instruction');
+gameInstructionText = document.querySelector('.instructionText');
 gameSelection = document.querySelector('.choices');
 startButton = document.querySelector('.startButton');
 gameButtons = document.querySelectorAll('.gameButtons');
@@ -128,6 +138,7 @@ playerScoreDisplay.addEventListener('transitionend',removeTransition);
 computerScoreDisplay.addEventListener('transitionend',removeTransition);
 
 startButton.addEventListener('click', function() {
+    resetGame();
     gameInstruction.style.display = 'none';
     gameSelection.style.display = 'flex';
     results.style.display = 'flex';

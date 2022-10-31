@@ -29,6 +29,15 @@ body {
     justify-content: center;
 }
 
+.instruction {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructionText {
+    font-size: 24px;
+}
+
 .choices {
     display: none;
     justify-content: center;
