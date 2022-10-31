@@ -36,6 +36,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// Changes game images to selections
 function updateVisual(playerSelection, computerSelection) {
     playerVisual.src = `img/${playerSelection.toLowerCase()}.png`;
     playerVisual.alt = `${playerSelection}`;
@@ -43,6 +44,7 @@ function updateVisual(playerSelection, computerSelection) {
     computerVisual.alt = `${computerSelection}`;
 }
 
+// Updates player scoreboard and triggers animation start
 function updateScore(winner) {
     if (winner === 'player') {
         playerScore++;
@@ -55,6 +57,7 @@ function updateScore(winner) {
     computerScoreDisplay.textContent = computerScore;
 }
 
+// Checks game win conditions and triggers end game conditions
 function checkForWinner() {
     // Game over deciding winner
     if (playerScore === roundsToWin) {
@@ -75,14 +78,15 @@ function resetScore() {
     computerScoreDisplay.classList.remove('winner');
 }
 
+// Button Hover Styling
 function buttonAddHighlight(e) {
     e.target.classList.add('highlight');
 }
-
 function buttonRemoveHighlight(e) {
     e.target.classList.remove('highlight');
 }
 
+// Scoreboard winner transition helper function
 function removeTransition(e) {
     if (e.propertyName !== 'transform') return; // skip it if its not transitioning
     this.classList.remove('winner');
@@ -96,6 +100,7 @@ let roundsToWin = 5;
 let playerSelection;
 let computerSelection;
 let winner;
+
 // Select required elements
 gameButtons = document.querySelectorAll('button');
 visuals = document.querySelector('.visuals');
@@ -111,11 +116,11 @@ gameMessage = document.querySelector('.message');
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseover', buttonAddHighlight ));
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseout', buttonRemoveHighlight ));
 
-// Winner Trasition
+// Winner Transition
 playerScoreDisplay.addEventListener('transitionend',removeTransition);
 computerScoreDisplay.addEventListener('transitionend',removeTransition);
 
-
+// Effective game function
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
     // Check for game start
     if (playerScore === 0 && computerScore === 0) {
