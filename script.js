@@ -104,6 +104,7 @@ let winner;
 // Select required elements
 //Container1
 gameInstruction = document.querySelector('.instruction');
+gameSelection = document.querySelector('.choices');
 startButton = document.querySelector('.startButton');
 gameButtons = document.querySelectorAll('.gameButtons');
 //Container2
@@ -116,27 +117,25 @@ results = document.querySelector('.results');
 playerScoreDisplay = document.querySelector('#playerScore');
 computerScoreDisplay = document.querySelector('#computerScore');
 
-console.log(startButton);
-
 // Button Hover Highlighting
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseover', buttonAddHighlight ));
 gameButtons.forEach(gameButton => gameButton.addEventListener('mouseout', buttonRemoveHighlight ));
 startButton.addEventListener('mouseover', buttonAddHighlight );
 startButton.addEventListener('mouseout', buttonRemoveHighlight );
 
-
 // Winner Transition
 playerScoreDisplay.addEventListener('transitionend',removeTransition);
 computerScoreDisplay.addEventListener('transitionend',removeTransition);
 
+startButton.addEventListener('click', function() {
+    gameInstruction.style.display = 'none';
+    gameSelection.style.display = 'flex';
+    results.style.display = 'flex';
+    visuals.style.visibility = 'visible';
+});
+
 // Effective game function
 gameButtons.forEach(gameButton => gameButton.addEventListener('click', function() {
-    // Check for game start
-    if (playerScore === 0 && computerScore === 0) {
-        gameInstruction.style.display = 'none';
-        results.style.display = 'flex';
-        visuals.style.visibility = 'visible';
-    }
     playerSelection = gameButton.name;
     computerSelection = getComputerChoice();
     winner = playRound(playerSelection, computerSelection);
